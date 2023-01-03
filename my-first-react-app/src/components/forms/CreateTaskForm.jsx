@@ -13,7 +13,7 @@ const CreateTaskForm = () => {
     taskDetails: "",
   });
 
-  const handleNameChange = (event) => {
+  /* const handleNameChange = (event) => {
     setFormData((prevState) => ({
       ...prevState,
       taskName: event.target.value,
@@ -35,6 +35,13 @@ const CreateTaskForm = () => {
       taskDetails: event.target.value,
     }));
     // setTaskDetails(event.target.value);
+  }; */
+
+  const handleInputChange = (event) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }));
   };
 
   const handleSubmit = (event) => {
@@ -60,7 +67,8 @@ const CreateTaskForm = () => {
         <div className="form-row">
           <label className="label-md">Task Name</label>
           <input
-            onChange={handleNameChange}
+            name="taskName"
+            onChange={handleInputChange}
             className="input-primary"
             type="text"
           />
@@ -69,7 +77,8 @@ const CreateTaskForm = () => {
         <div className="form-row">
           <label className="label-md">Due Date</label>
           <input
-            onChange={handleDateChange}
+            name="dueDate"
+            onChange={handleInputChange}
             className="input-primary"
             type="date"
           />
@@ -78,9 +87,9 @@ const CreateTaskForm = () => {
         <div className="form-row">
           <label className="label-md">Task Details</label>
           <textarea
-            onChange={handleDetailsChange}
+            name="taskDetails"
+            onChange={handleInputChange}
             className="input-primary"
-            name=""
             id=""
             cols="30"
             rows="10"
