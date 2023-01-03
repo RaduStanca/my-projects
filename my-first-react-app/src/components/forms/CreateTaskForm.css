@@ -1,4 +1,44 @@
 .form-row {
   display: flex;
   flex-direction: column;
+  margin: 20px 0;
+}
+
+.label-md {
+  font-family: "Sen";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #2c2e3a;
+}
+
+.input-primary {
+  margin: 5px 0;
+  padding: 16px;
+  gap: 10px;
+  border: 1px solid #a8abbd;
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: "sen", sans-serif;
+}
+
+textarea.input-primary {
+  resize: none;
+}
+
+.button-primary {
+  background: #3754db;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  padding: 19px 74px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  font-family: "sen", sans-serif;
+}
+
+.button-primary:hover {
 }
