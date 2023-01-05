@@ -2,10 +2,10 @@ import React from "react";
 import { useState } from "react";
 import "./CreateTaskForm.css";
 
-const CreateTaskForm = () => {
+const CreateTaskForm = (props) => {
   const [taskName, setTaskName] = useState("");
-  const [dueDate, setDueDate] = useState();
-  const [taskDetails, setTaskDetails] = useState();
+  const [dueDate, setDueDate] = useState("");
+  const [taskDetails, setTaskDetails] = useState("");
 
   /*  const [formData, setFormData] = useState({
     taskName: "",
@@ -44,9 +44,14 @@ const CreateTaskForm = () => {
     }));
   }; */
 
+  const resetForm = () => {
+    setTaskName("");
+    setDueDate("");
+    setTaskDetails("");
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-
     const newTask = {
       name: taskName,
       dueDate: dueDate,
@@ -54,10 +59,9 @@ const CreateTaskForm = () => {
       status: "To Do",
     };
 
+    props.addNewTask(newTask);
     console.log("newTask=", newTask);
-    setTaskName("");
-    setDueDate("");
-    setTaskDetails("");
+    resetForm();
   };
   return (
     <div>
