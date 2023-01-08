@@ -37,7 +37,6 @@ const data = [
 
 function App() {
   const [taskList, setTaskList] = useState(data);
-  const [isOpen, setIsOpen] = useState(false);
 
   const onNewTaskAdd = (newTask) => {
     setTaskList((prevState) => [
@@ -48,47 +47,19 @@ function App() {
         id: "T-" + prevState.length + 1,
       },
     ]);
-    setIsOpen(false);
   };
 
-  const openModal = () => {
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
-
-    /* const taskToAdd = {
+  /* const taskToAdd = {
       ...newTask,
       dueDate: new Date(newTask.dueDate),
     }; */
-  };
 
   return (
     <div className="app-container">
       <div className="app-content">
-        <TaskViewer onCreateClick={openModal} taskList={taskList} />
+        <TaskViewer onNewTaskAdd={onNewTaskAdd} taskList={taskList} />
       </div>
-      <Modal onClose={closeModal} isOpen={isOpen}>
-        <h3>Create task</h3>
-        <CreateTaskForm addNewTask={onNewTaskAdd} />
-      </Modal>
     </div>
   );
 }
 export default App;
-
-// return React.createElement(
-//   'div',
-//   {
-//     className: "app-container"
-//   },
-//   React.createElement(
-//     'div',
-//     {
-//       className: "app-content"
-//     },
-//     React.createElement("h3", {}, ""),
-//     React.createElement(TaskViewer, { taskList: data })
-//   )
-// );
