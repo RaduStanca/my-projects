@@ -33,6 +33,20 @@ const data = [
     name: "14Create a Design System for Enum Workspace.",
     dueDate: new Date(2022, 11, 15),
   },
+
+  {
+    id: "T-5",
+    status: "Todo",
+    name: "11Create a Design System for Enum Workspace.",
+    dueDate: new Date(2022, 10, 24),
+  },
+
+  {
+    id: "T-6",
+    status: "Todo",
+    name: "11Create a Design System for Enum Workspace.",
+    dueDate: new Date(2022, 10, 24),
+  },
 ];
 
 function App() {
@@ -48,11 +62,6 @@ function App() {
       },
     ]);
   };
-
-  /* const taskToAdd = {
-      ...newTask,
-      dueDate: new Date(newTask.dueDate),
-    }; */
 
   return (
     <div className="app-container">
