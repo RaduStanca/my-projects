@@ -1,48 +1,44 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./CreateTaskForm.css";
 
 const CreateTaskForm = (props) => {
   const [taskName, setTaskName] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [taskDetails, setTaskDetails] = useState("");
-
-  /*  const [formData, setFormData] = useState({
+  const [formValidation, setFormValidation] = useState({
     taskName: "",
     dueDate: "",
     taskDetails: "",
-  }); */
+    isValid: true,
+  });
+
+  useEffect(() => {
+    if (taskName.length === 0) {
+      setFormValidation((prevState) => ({
+        ...prevState,
+        taskName: "This field is Required!! ",
+        isValid: false,
+      }));
+    } else {
+      setFormValidation((prevState) => ({
+        ...prevState,
+        taskName: "",
+        isValid: true,
+      }));
+    }
+  }, [taskName]);
 
   const handleNameChange = (event) => {
     setTaskName(event.target.value);
-    /*  setFormData((prevState) => ({
-      ...prevState,
-      taskName: event.target.value,
-    })); */
   };
 
   const handleDateChange = (event) => {
     setDueDate(event.target.value);
-    /* setFormData((prevState) => ({
-      ...prevState,
-      dueDate: event.target.value,
-    })); */
   };
 
   const handleDetailsChange = (event) => {
     setTaskDetails(event.target.value);
-    /*  setFormData((prevState) => ({
-      ...prevState,
-      taskDetails: event.target.value,
-    })); */
   };
-
-  /*  const handleInputChange = (event) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [event.target.name]: event.target.value,
-    }));
-  }; */
 
   const resetForm = () => {
     setTaskName("");
@@ -72,9 +68,10 @@ const CreateTaskForm = (props) => {
             value={taskName}
             name="taskName"
             onChange={handleNameChange}
-            className="input-primary"
+            className={`input-primary ${formValidation.taskName && "error"}`}
             type="text"
           />
+          <p className="error-mesage">{formValidation.taskName}</p>
         </div>
 
         <div className="form-row">
@@ -86,6 +83,7 @@ const CreateTaskForm = (props) => {
             className="input-primary"
             type="date"
           />
+          <p className="error-mesage "></p>
         </div>
 
         <div className="form-row">
@@ -99,8 +97,13 @@ const CreateTaskForm = (props) => {
             cols="30"
             rows="10"
           ></textarea>
+          <p className="error-mesage "></p>
         </div>
-        <button className="button-primary" type="submit">
+        <button
+          disabled={!formValidation.isValid}
+          className="button-primary"
+          type="submit"
+        >
           Create Task
         </button>
       </form>

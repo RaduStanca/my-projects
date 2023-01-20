@@ -13,6 +13,11 @@
   color: #2c2e3a;
 }
 
+input,
+textarea {
+  outline: none;
+}
+
 .input-primary {
   margin: 5px 0;
   padding: 16px;
@@ -41,4 +46,12 @@ textarea.input-primary {
 }
 
 .button-primary:hover {
+}
+
+.error {
+  background-color: #ff6443;
+}
+
+.error-mesage {
+  color: #ff6443;
 }
