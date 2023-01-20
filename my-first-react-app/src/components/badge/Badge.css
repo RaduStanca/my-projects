@@ -10,3 +10,33 @@
   font-size: 12px;
   line-height: 14px;
 }
+
+.grey {
+  background-color: #f2f2f2;
+  color: #808080;
+}
+
+.blue {
+  background-color: #f2f2f2;
+  color: #3754db;
+}
+
+.green {
+  background-color: #f2f2f2;
+  color: #00c271;
+}
+
+.purple {
+  background-color: #f2f2f2;
+  color: purple;
+}
+
+.orange {
+  background-color: #f2f2f2;
+  color: #df9a00;
+}
+
+.black {
+  background-color: #f2f2f2;
+  color: #000;
+}
