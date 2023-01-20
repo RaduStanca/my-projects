@@ -1,10 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import "./App.css";
 import TaskViewer from "./components/task-viewer/TaskViewer";
-import CreateTaskForm from "./components/forms/CreateTaskForm";
-import Modal from "./components/modal/Modal";
-
+import "./App.css";
 const data = [
   {
     id: "T-1",
@@ -15,7 +12,7 @@ const data = [
 
   {
     id: "T-2",
-    status: "In progres ",
+    status: "In progress ",
     name: "12Create a Design System for Enum Workspace.",
     dueDate: new Date(2022, 10, 30),
   },
@@ -43,7 +40,7 @@ const data = [
 
   {
     id: "T-6",
-    status: "Todo",
+    status: "In progress",
     name: "11Create a Design System for Enum Workspace.",
     dueDate: new Date(2022, 10, 24),
   },
