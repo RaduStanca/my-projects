@@ -43,15 +43,16 @@ textarea.input-primary {
   font-size: 16px;
   line-height: 19px;
   font-family: "sen", sans-serif;
+  white-space: nowrap;
 }
 
-.button-primary:hover {
-}
+/* .button-primary:hover {
+} */
 
 .error {
-  background-color: #ff6443;
+  background-color: #ff4500;
 }
 
 .error-mesage {
-  color: #ff6443;
+  color: #ff4500;
 }
