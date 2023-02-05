@@ -13,6 +13,11 @@
   color: #2c2e3a;
 }
 
+input,
+textarea {
+  outline: none;
+}
+
 .input-primary {
   margin: 5px 0;
   padding: 16px;
@@ -38,7 +43,16 @@ textarea.input-primary {
   font-size: 16px;
   line-height: 19px;
   font-family: "sen", sans-serif;
+  white-space: nowrap;
 }
 
-.button-primary:hover {
+/* .button-primary:hover {
+} */
+
+.error {
+  background-color: #ff4500;
+}
+
+.error-mesage {
+  color: #ff4500;
 }

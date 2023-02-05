@@ -1,48 +1,76 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./CreateTaskForm.css";
-
+import { clsx } from "clsx";
 const CreateTaskForm = (props) => {
   const [taskName, setTaskName] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [taskDetails, setTaskDetails] = useState("");
-
-  /*  const [formData, setFormData] = useState({
+  const [formValidation, setFormValidation] = useState({
     taskName: "",
     dueDate: "",
     taskDetails: "",
-  }); */
+    isValid: true,
+  });
+
+  useEffect(() => {
+    if (taskName.length === 0) {
+      setFormValidation((prevState) => ({
+        ...prevState,
+        taskName: "This field is Required!! ",
+        isValid: false,
+      }));
+    } else {
+      setFormValidation((prevState) => ({
+        ...prevState,
+        taskName: "",
+        isValid: true,
+      }));
+    }
+  }, [taskName]);
+
+  useEffect(() => {
+    if (taskDetails.length === 0) {
+      setFormValidation((prevState) => ({
+        ...prevState,
+        taskDetails: "This field is Required!! ",
+        isValid: false,
+      }));
+    } else {
+      setFormValidation((prevState) => ({
+        ...prevState,
+        taskDetails: "",
+        isValid: true,
+      }));
+    }
+  }, [taskDetails]);
+
+  useEffect(() => {
+    if (dueDate.length === 0) {
+      setFormValidation((prevState) => ({
+        ...prevState,
+        dueDate: "This field is Required!! ",
+        isValid: false,
+      }));
+    } else {
+      setFormValidation((prevState) => ({
+        ...prevState,
+        dueDate: "",
+        isValid: true,
+      }));
+    }
+  }, [dueDate]);
 
   const handleNameChange = (event) => {
     setTaskName(event.target.value);
-    /*  setFormData((prevState) => ({
-      ...prevState,
-      taskName: event.target.value,
-    })); */
   };
 
   const handleDateChange = (event) => {
     setDueDate(event.target.value);
-    /* setFormData((prevState) => ({
-      ...prevState,
-      dueDate: event.target.value,
-    })); */
   };
 
   const handleDetailsChange = (event) => {
     setTaskDetails(event.target.value);
-    /*  setFormData((prevState) => ({
-      ...prevState,
-      taskDetails: event.target.value,
-    })); */
   };
-
-  /*  const handleInputChange = (event) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [event.target.name]: event.target.value,
-    }));
-  }; */
 
   const resetForm = () => {
     setTaskName("");
@@ -72,9 +100,14 @@ const CreateTaskForm = (props) => {
             value={taskName}
             name="taskName"
             onChange={handleNameChange}
-            className="input-primary"
+            // className={`input-primary ${formValidation.taskName && "error"}`}
+            className={clsx("input-primary", {
+              // eslint-disable-next-line no-useless-computed-key
+              ["error"]: formValidation.taskName,
+            })}
             type="text"
           />
+          <p className="error-mesage">{formValidation.taskName}</p>
         </div>
 
         <div className="form-row">
@@ -83,9 +116,13 @@ const CreateTaskForm = (props) => {
             value={dueDate}
             name="dueDate"
             onChange={handleDateChange}
-            className="input-primary"
+            className={clsx("input-primary", {
+              // eslint-disable-next-line no-useless-computed-key
+              ["error"]: formValidation.dueDate,
+            })}
             type="date"
           />
+          <p className="error-mesage ">{formValidation.dueDate}</p>
         </div>
 
         <div className="form-row">
@@ -94,13 +131,21 @@ const CreateTaskForm = (props) => {
             value={taskDetails}
             name="taskDetails"
             onChange={handleDetailsChange}
-            className="input-primary"
+            className={clsx("input-primary", {
+              // eslint-disable-next-line no-useless-computed-key
+              ["error"]: formValidation.taskDetails,
+            })}
             id=""
             cols="30"
             rows="10"
           ></textarea>
+          <p className="error-mesage ">{formValidation.taskDetails}</p>
         </div>
-        <button className="button-primary" type="submit">
+        <button
+          disabled={!formValidation.isValid}
+          className="button-primary"
+          type="submit"
+        >
           Create Task
         </button>
       </form>
