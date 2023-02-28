@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./CreateTaskForm.css";
+import { validateForm } from "./helper/formValidator";
 import { clsx } from "clsx";
+
 const CreateTaskForm = (props) => {
   const [taskName, setTaskName] = useState("");
   const [dueDate, setDueDate] = useState("");
@@ -13,52 +15,8 @@ const CreateTaskForm = (props) => {
   });
 
   useEffect(() => {
-    if (taskName.length === 0) {
-      setFormValidation((prevState) => ({
-        ...prevState,
-        taskName: "This field is Required!! ",
-        isValid: false,
-      }));
-    } else {
-      setFormValidation((prevState) => ({
-        ...prevState,
-        taskName: "",
-        isValid: true,
-      }));
-    }
-  }, [taskName]);
-
-  useEffect(() => {
-    if (taskDetails.length === 0) {
-      setFormValidation((prevState) => ({
-        ...prevState,
-        taskDetails: "This field is Required!! ",
-        isValid: false,
-      }));
-    } else {
-      setFormValidation((prevState) => ({
-        ...prevState,
-        taskDetails: "",
-        isValid: true,
-      }));
-    }
-  }, [taskDetails]);
-
-  useEffect(() => {
-    if (dueDate.length === 0) {
-      setFormValidation((prevState) => ({
-        ...prevState,
-        dueDate: "This field is Required!! ",
-        isValid: false,
-      }));
-    } else {
-      setFormValidation((prevState) => ({
-        ...prevState,
-        dueDate: "",
-        isValid: true,
-      }));
-    }
-  }, [dueDate]);
+    setFormValidation(validateForm(taskName, dueDate, taskDetails));
+  }, [taskName, dueDate, taskDetails]);
 
   const handleNameChange = (event) => {
     setTaskName(event.target.value);

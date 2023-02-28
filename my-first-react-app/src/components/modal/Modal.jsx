@@ -4,6 +4,7 @@ import "./Modal.css";
 
 const Modal = (props) => {
   const [isOpen, setIsOpen] = useState(false);
+
   const closeModal = () => {
     setIsOpen(false);
     if (props.onClose) {
